@@ -1,0 +1,10 @@
+# Private library content and computer-specific settings
+.local-storage.json
+my-library.json
+yeobaek-library.json
+*.log
+*.tmp
+*.zip
+node_modules/
+.DS_Store
+Thumbs.db
