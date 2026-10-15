@@ -64,3 +64,10 @@ function setup(){const nodes=new Map();const node=()=>({value:'',style:{},classL
 test('records, review and cover survive serialization',()=>{const c=setup();const result=vm.runInContext(`validate(JSON.parse(serialize([{id:'1',title:'책',author:'작가',review:'첫 줄\\n둘째 줄',cover:'data:image/png;base64,aGVsbG8=',status:'done',rating:5,date:'2026-10-14',updatedAt:'2026-10-14'}])))`,c);assert.equal(result[0].review,'첫 줄\n둘째 줄');assert.equal(result[0].cover,'data:image/png;base64,aGVsbG8=')});
 test('invalid backup and unsafe cover rejected',()=>{const c=setup();assert.throws(()=>vm.runInContext(`validate({app:'other',version:1,books:[]})`,c));assert.throws(()=>vm.runInContext(`validate({app:'yeobaek',version:1,books:[{id:'1'}]})`,c))});
 test('folder writes round trip and external changes block overwrite',async()=>{const c=setup();await vm.runInContext(`(async()=>{let disk=null;folder={async getFileHandle(name,opts){if(disk===null&&!opts?.create){const e=new Error();e.name='NotFoundError';throw e}return {async getFile(){return {async text(){return disk}}},async createWritable(){let next;return {async write(text){next=text},async close(){disk=next},async abort(){}}}}}};await writeFolder([]);if((await readFolder(folder))!==revision)throw Error('round trip failed');disk='external edit';let blocked=false;try{await writeFolder([])}catch{blocked=true}if(!blocked||disk!=='external edit')throw Error('overwritten')})()`,c)});
+
+test('backdrop detection excludes dialog padding and child controls',()=>{
+ const c=setup();vm.runInContext("$('#editor').getBoundingClientRect=()=>({left:100,right:500,top:100,bottom:600})",c);
+ assert.equal(vm.runInContext("outsideEditor({target:$('#editor'),clientX:50,clientY:200})",c),true);
+ assert.equal(vm.runInContext("outsideEditor({target:$('#editor'),clientX:150,clientY:200})",c),false);
+ assert.equal(vm.runInContext("outsideEditor({target:$('#review'),clientX:50,clientY:200})",c),false);
+});
