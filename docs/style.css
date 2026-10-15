@@ -159,3 +159,6 @@ main>.library{border-top:0;padding-top:30px}
 .sidebar-controls .search{border-bottom:0}
 
 .sidebar-controls #sort{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+
+.sidebar-controls #add{text-decoration:none}
+main>header{border-bottom:0}
