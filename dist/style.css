@@ -36,7 +36,7 @@
 .form-footer #delete{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
 .form-footer{border-top:1px solid var(--line);padding-top:18px}
 #editor .dialog-heading{justify-content:flex-end}
-#book-heading{margin-right:auto;min-width:0;overflow-wrap:anywhere}#book-heading-title{font-size:20px;line-height:1.5}#book-heading-author{margin:6px 0 0;font-size:12px;color:#8c9282}#editor .dialog-heading{gap:20px}
+#book-heading{margin-right:auto;min-width:0;overflow-wrap:anywhere}#book-heading-title{font-size:20px;line-height:1.5;font-weight:700}#book-heading-author{margin:6px 0 0;font-size:12px;color:#8c9282}#editor .dialog-heading{gap:20px}
 #book-heading{flex:1}#book-heading-inputs{gap:12px}#editor .dialog-heading{align-items:flex-start}#editor .editor-heading-actions{padding-top:2px}
 .touch-quote-order{display:none}@media(pointer:coarse){.touch-quote-order{display:flex;gap:8px;margin-bottom:10px}.touch-quote-order button{background:#e9eddf;color:var(--green);border-radius:4px;min-width:40px;min-height:40px}.shelf .book:hover .book-info-panel{visibility:hidden;opacity:0}.quote-feature{padding:10px;top:6px;right:5px}.underlined-action{min-height:44px}.fields input,.fields select,textarea{font-size:16px}}@media(max-width:680px){.side-bottom{display:block;margin-top:10px}.editor-heading-actions{gap:8px}#book-heading-inputs input{min-width:0}dialog{max-height:90dvh}.book-field-heading{line-height:1.6}}
 .shelf .book-cover img{object-fit:contain}.cover-upload img{object-fit:contain}
