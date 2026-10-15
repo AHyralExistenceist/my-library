@@ -42,3 +42,5 @@
 .shelf .book-cover img{object-fit:contain}.cover-upload img{object-fit:contain}
 .shelf{align-items:flex-end}
 .book[draggable="true"]{cursor:grab}.book.book-dragging{opacity:.55;cursor:grabbing}.book.book-drop-before{outline:2px solid #879b78;outline-offset:4px;border-left:3px solid #657b56}.book.book-drop-after{outline:2px solid #879b78;outline-offset:4px;border-right:3px solid #657b56}.book-drag-active .book .book-info-panel{visibility:hidden!important;opacity:0!important}
+
+#quotes-title,#review-title{font-size:16px;font-weight:700}
