@@ -36,7 +36,7 @@
 .form-footer #delete{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
 .form-footer{border-top:1px solid var(--line);padding-top:18px}
 #editor .dialog-heading{justify-content:flex-end}
-#book-heading{margin-right:auto;min-width:0;overflow-wrap:anywhere}#book-heading-title{font-size:25px;line-height:1.5;font-weight:700}#book-heading-author{margin:6px 0 0;font-size:17px;font-weight:400;color:#8c9282}#editor .dialog-heading{gap:20px}
+#book-heading{margin-right:auto;min-width:0;overflow-wrap:anywhere}#book-heading-title{font-size:25px;line-height:1.5;font-weight:700;margin-bottom:0}#book-heading-author{margin:2px 0 0;font-size:14px;font-weight:400;color:#8c9282}#editor .dialog-heading{gap:20px}
 #book-heading{flex:1}#book-heading-inputs{gap:12px}#editor .dialog-heading{align-items:flex-start}#editor .editor-heading-actions{padding-top:2px}
 .touch-quote-order{display:none}@media(pointer:coarse){.touch-quote-order{display:flex;gap:8px;margin-bottom:10px}.touch-quote-order button{background:#e9eddf;color:var(--green);border-radius:4px;min-width:40px;min-height:40px}.shelf .book:hover .book-info-panel{visibility:hidden;opacity:0}.quote-feature{padding:10px;top:6px;right:5px}.underlined-action{min-height:44px}.fields input,.fields select,textarea{font-size:16px}}@media(max-width:680px){.side-bottom{display:block;margin-top:10px}.editor-heading-actions{gap:8px}#book-heading-inputs input{min-width:0}dialog{max-height:90dvh}.book-field-heading{line-height:1.6}}
 .shelf .book-cover img{object-fit:contain}.cover-upload img{object-fit:contain}
@@ -49,3 +49,113 @@
 #quotes-title::before,#review-title::before{content:"";display:inline-block;width:5px;height:5px;margin-right:8px;border-radius:50%;background:#9aa58d;vertical-align:middle}
 
 .review-section{margin-top:28px;padding-top:22px;border-top:1px solid var(--line)}
+
+/* Use the installed Hamchorom font for Korean; retain existing Latin fonts. */
+@font-face{font-family:'Library Korean Batang';src:local('함초롬바탕'),local('HCR Batang');font-weight:400;unicode-range:U+1100-11FF,U+3130-318F,U+A960-A97F,U+AC00-D7FF,U+3000-303F,U+3400-4DBF,U+4E00-9FFF,U+F900-FAFF}
+@font-face{font-family:'Library Korean Batang';src:local('함초롬바탕 Bold'),local('HCR Batang Bold');font-weight:700;unicode-range:U+1100-11FF,U+3130-318F,U+A960-A97F,U+AC00-D7FF,U+3000-303F,U+3400-4DBF,U+4E00-9FFF,U+F900-FAFF}
+body{font-family:'Library Korean Batang','Malgun Gothic',sans-serif}
+.brand,.side-bottom p,h1,.art-book,.empty h3,.book-cover strong{font-family:'Library Korean Batang',Batang,serif}
+.brand span{font-family:'Library Korean Batang',serif}
+.line-art>span,.empty-books{font-family:'Library Korean Batang',Georgia,serif}
+
+/* Field labels use the original UI font; entered values retain Batang. */
+#book-form label,#quotes-title,#review-title{font-family:'Malgun Gothic',sans-serif}
+#book-form input,#book-form textarea,#book-form select,#book-form .book-info-value{font-family:'Library Korean Batang','Malgun Gothic',sans-serif}
+
+.shelf{position:relative}
+.shelf .book{border-bottom-color:transparent;box-shadow:none}
+.shelf-plank{position:absolute;height:9px;background:#dfded1;box-shadow:0 8px 12px -13px #555;pointer-events:none}
+
+/* A thicker shelf with a lit top edge and a shaded front face. */
+.shelf .book{border-bottom-width:17px}
+.shelf-plank{height:17px;background:linear-gradient(to bottom,#eeede3 0 4px,#d9d8c9 4px,#d2d1c1 14px,#c5c4b3 17px);border-top:1px solid #f5f4eb;border-bottom:1px solid #bdbdac;box-shadow:0 7px 9px -5px rgba(55,57,42,.32),inset 0 1px rgba(255,255,255,.65);border-radius:1px}
+
+.shelf .book{border-bottom-width:25px}
+.shelf-plank{height:25px;background:linear-gradient(to bottom,#eeede3 0 5px,#d9d8c9 5px,#d2d1c1 21px,#c5c4b3 25px);box-shadow:0 9px 12px -5px rgba(55,57,42,.32),inset 0 1px rgba(255,255,255,.65)}
+
+.shelf .book{padding-bottom:8px}
+.shelf .book .book-info-panel{bottom:8px}
+
+.shelf .book{padding-bottom:0}
+.shelf .book .book-info-panel{bottom:0}
+.shelf .book-cover{box-shadow:7px 3px 10px rgba(40,52,34,.32),inset 5px 0 #0001}
+
+.shelf .book-cover::after{content:"";position:absolute;left:0;right:0;bottom:0;height:50%;background:linear-gradient(to bottom,transparent,rgba(35,39,30,.09));pointer-events:none}
+
+.shelf-plank{background:linear-gradient(to bottom,#d4d3c4 0 5px,#b9b8a5 5px,#aeae99 21px,#9d9e88 25px);border-top-color:#e1e0d3;border-bottom-color:#92947e}
+.shelf .book:hover .book-cover::after{opacity:0}
+
+.shelf-plank{border-radius:0;clip-path:polygon(3px 0,calc(100% - 3px) 0,100% 3px,100% calc(100% - 3px),calc(100% - 3px) 100%,3px 100%,0 calc(100% - 3px),0 3px)}
+
+/* A narrow paper edge on the right side of each cover. */
+.shelf .book-cover::before{content:"";position:absolute;z-index:1;top:3px;right:0;bottom:2px;width:6px;border-left:1px solid rgba(51,47,35,.18);border-radius:0 4px 4px 0;background:repeating-linear-gradient(to right,#e9e6d9 0 .5px,#faf8ef .5px 1.5px);box-shadow:inset 2px 0 3px rgba(66,58,39,.12),inset -1px 0 rgba(255,255,255,.7);pointer-events:none}
+
+/* Front cover, paper block, and matching back cover are separate layers. */
+.book-volume{position:relative;width:calc(var(--book-width) - 10px);isolation:isolate}
+.shelf .book-volume .book-cover{width:100%;z-index:2;box-shadow:2px 0 3px rgba(40,52,34,.15)}
+.shelf .book-cover::before{content:none}
+.book-back-cover{position:absolute;inset:0;transform:translateX(9px);z-index:0;border-radius:2px 6px 6px 2px;overflow:hidden;box-shadow:7px 3px 10px rgba(40,52,34,.32)}
+.book-back-cover img{display:block;width:100%;height:100%;object-fit:fill}
+.book-page-block{position:absolute;inset:3px 0 2px;transform:translateX(7px);z-index:1;border-radius:1px 3px 3px 1px;background:repeating-linear-gradient(to right,#e9e6d9 0 .5px,#faf8ef .5px 1.5px);box-shadow:inset -1px 0 rgba(80,75,55,.14)}
+.shelf .book .book-info-panel{z-index:3}
+
+.book-back-cover::after{content:"";position:absolute;inset:0;background:rgba(20,24,18,.6);pointer-events:none}
+
+.book-page-block::after{content:"";position:absolute;inset:0;border-radius:inherit;background:rgba(20,24,18,.5);pointer-events:none}
+
+/* Cast the book shadow diagonally, stopping at the shelf surface. */
+.book-volume{clip-path:inset(-20px -40px 0 -12px)}
+.book-back-cover{box-shadow:10px 10px 13px -2px rgba(40,52,34,.34)}
+
+/* Project a slanted book silhouette instead of an evenly spread shadow. */
+.book-volume{clip-path:inset(-20px -85px 0 -12px)}
+.book-volume::before{content:"";position:absolute;inset:5px 0 0;z-index:-1;border-radius:2px 6px 4px 2px;background:linear-gradient(110deg,rgba(40,44,31,.24),rgba(40,44,31,.14));transform-origin:left top;transform:translate(10px,10px) skew(10deg,8deg);filter:blur(5px);pointer-events:none}
+.book-back-cover{box-shadow:3px 2px 4px rgba(40,52,34,.18)}
+
+
+/* Keep book shadows in shelf order, including while hovered. */
+.shelf .book:hover,.shelf .book:focus-visible{z-index:auto}
+
+.fallback-cover-heading strong{display:block}
+.fallback-cover-author{display:block;margin-top:6px}
+
+
+.shelf-plank::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(30,27,20,.18),rgba(30,27,20,.06) 45%,transparent 85%);pointer-events:none}
+
+
+
+.shelf-plank-shadow{position:absolute;height:96px;background:linear-gradient(to bottom,rgba(40,44,31,.56),rgba(40,44,31,.3) 45%,transparent);transform-origin:left top;transform:skewX(32deg);filter:blur(4px);pointer-events:none}
+
+.shelf-plank-shadow{-webkit-mask-image:linear-gradient(to right,transparent,black 14%,black 86%,transparent);mask-image:linear-gradient(to right,transparent,black 14%,black 86%,transparent)}
+
+/* Library controls live in the sidebar; the header and books remain in main. */
+aside{overflow-y:auto}
+.sidebar-controls{margin-top:24px;padding-top:24px;border-top:1px solid var(--line)}
+.sidebar-controls .library-heading{display:flex;flex-direction:column;align-items:stretch;gap:18px}
+.sidebar-controls h2{font-size:18px}
+.sidebar-controls .toolbar{flex-direction:column;align-items:stretch;gap:14px;margin:20px 0}
+.sidebar-controls .search{width:100%;min-width:0;border-bottom:1px solid var(--line)}
+.sidebar-controls .search input{min-width:0}
+.sidebar-controls .toolbar select{width:100%;padding:8px 0}
+.side-bottom{padding-top:20px}
+main>.library{border-top:0;padding-top:30px}
+@media(max-width:680px){.sidebar-controls{margin-top:14px;padding-top:14px}.sidebar-controls .library-heading{flex-direction:row;align-items:center;justify-content:space-between}.sidebar-controls .toolbar{flex-direction:row;margin:12px 0 0}.sidebar-controls .search{flex:1}.sidebar-controls .toolbar select{width:auto;max-width:110px}}
+
+.sidebar-controls #add{align-self:flex-start;text-align:left}
+
+.sidebar-controls #add{margin-top:-8px;padding-top:4px}
+
+.sidebar-controls #sort{margin-top:-8px;padding-top:4px}
+
+.sidebar-controls #sort{position:relative;left:-1px}
+.sidebar-controls .search{border-bottom-color:#8b947f}
+
+.sidebar-controls .search,.sidebar-controls .search input,.sidebar-controls #add,.sidebar-controls #sort{color:#87917c}
+.sidebar-controls .search input::placeholder{color:#87917c;opacity:1}
+.sidebar-controls .search,.sidebar-controls #add,.sidebar-controls #sort{margin-left:0;padding-left:0;text-align:left}
+.sidebar-controls #sort{left:0;text-indent:0}
+.sidebar-controls #add:hover{color:#87917c}
+
+.sidebar-controls .search{border-bottom:0}
+
+.sidebar-controls #sort{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
